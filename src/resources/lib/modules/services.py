@@ -265,6 +265,7 @@ class services:
 
     def start_service(self):
         try:
+            self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
             self.oe.dbg_log('services::start_service', 'enter_function', 0)
             self.load_values()
             self.initialize_samba(service=1)
@@ -535,7 +536,9 @@ class services:
         try:
             self.oe.dbg_log('services::do_wizard', 'enter_function', 0)
             self.oe.winOeMain.set_wizard_title(self.oe._(32311))
-
+            # Enable ssh
+            self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
+            self.initialize_ssh()
             # Enable samba
             self.struct['samba']['settings']['samba_autostart']['value'] = '1'
             self.initialize_samba()
