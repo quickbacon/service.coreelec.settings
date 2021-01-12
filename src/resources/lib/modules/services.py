@@ -336,7 +336,7 @@ class services:
             # SSH
 
             if os.path.isfile(self.SSH_DAEMON):
-                self.struct['ssh']['settings']['ssh_autostart']['value'] = self.oe.get_service_state('sshd')
+                self.struct['ssh']['settings']['ssh_autostart']['value'] = '1'
                 self.struct['ssh']['settings']['ssh_secure']['value'] = self.oe.get_service_option('sshd', 'SSHD_DISABLE_PW_AUTH',
                         self.D_SSH_DISABLE_PW_AUTH).replace('true', '1').replace('false', '0').replace('"', '')
 
